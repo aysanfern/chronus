@@ -2,6 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from math import ceil
+from functions import make_cumulative
 
 dataset=pd.read_csv('Flow (Total) - Sun 6th Jan 2019 (Today).csv')
 X= dataset.iloc[:,2].values
@@ -10,49 +12,11 @@ do= y-X
 secs = do/1000
 seconds=list(secs)
 
-rah=[]
-x=0
-new=0
 ga=[]
-for i in range(len(secs)):
-    if i>0:   
-        new= secs[i]+ga[i-1]
-        ga.append(new)
-    else:
-        ga.append(secs[0])
+make_cumulative(secs,ga)
 
-
-t=[]
-u=[]
-k=[]
-b=[]
-bi=[]
-bit=[]
-bitb=[]
-bitc=[]
-bitd=[]
-for i in range(len(ga)):
-    if ga[i]<=3600:
-        t.append(i)
-    elif ga[i]<=7200:
-        u.append(i)
-    elif ga[i]<=10800:
-        k.append(i)
-    elif ga[i]<=14400:
-        b.append(i)
-    elif ga[i]<=18000:
-        bi.append(i)
-    elif ga[i]<=21600:
-        bit.append(i)
-    elif ga[i]<=25200:
-        bitb.append(i)
-    elif ga[i]<=28800:
-        bitc.append(i)
-    elif ga[i]<=32400:
-        bitd.append(i)
-    elif ga[i]<=36000:
-        bite.append(i)
-
+z=ceil(ga[-1]/3600)
+necessary_list=[[val for idx,val in enumerate(ga) if 3600*level<val<=3600*(1+level)] for level in range(z)]
 
 v1=len(t)
 v2=len(u)
