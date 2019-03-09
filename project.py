@@ -64,10 +64,9 @@ total_un=np.add.reduce(unlist)
 total_time=total_pro+total_un
 total_productivity=(total_pro/total_time)*100
 jaja=[(prolist[i]/int[i])*100 for i in range(len(int))]
-k=[jaja[i] for i in range(len(jaja)) if jaja[i]>=0]
 unique=set(time)    
 ut=list(unique)
-plt.plot(ut,k, marker= 'o',label='Productivity per hour')
+plt.plot(ut,jaja, marker= 'o',label='Productivity per hour')
 ax=plt.subplot()
 plt.xlabel('Hour')
 plt.ylabel('Productivity (%)')   
